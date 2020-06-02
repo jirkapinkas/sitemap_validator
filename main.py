@@ -204,6 +204,8 @@ def main():
             results = results.iloc[0:0]
 
         print("END INTERATION %i \n" % iteration)
+    if failed_links > 0:
+        sys.exit("Number of failed links: %s. Exiting..." % str(failed_links))
 
 
 if __name__ == "__main__":

@@ -1,17 +1,17 @@
-[![Build Status](https://travis-ci.org/ernestova/sitemap_warmup.svg?branch=master)](https://travis-ci.org/ernestova/sitemap_warmup)
 
-# Sitemap WarmUp
-Sitemap Validation, Checker and CDN Warmup
+# Sitemap Validator
 
-This tool will crawl any sitemap.xml, validate, parse and check each URL, if a sitemap index is found it will added for processing. 
+This tool will crawl any sitemap.xml, validate, parse and check each URL, if a sitemap index is found it will be added for processing. 
 
-It validate that each sitemaps.xml follows the XML schemas for sitemaps  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd and for Sitemap index files http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd
+It validates that each sitemaps.xml follows the XML schemas for sitemaps  http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd and for Sitemap index files http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd
 
 Then it check each URL and return its HTTP response code, Time, Meta Robots, Cache Control. 
 
+If any URL fails, Sitemap Validator fails as well.
+
 # Docker
 ```
-docker run -v ${PWD}:/tmp/ ernestova/sitemap_warmup -s "https://www.domain.com/sitemap.xml"  -c 5 -d 1 -o -q 
+docker run -v ${PWD}:/tmp/ jirkapinkas/sitemap_validator -s "https://www.sitemaps.org/sitemap.xml" -c 5
 ```
 
 # Parameters
