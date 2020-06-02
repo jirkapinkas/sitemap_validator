@@ -5,30 +5,27 @@ This tool will crawl any sitemap.xml, validate, parse and check each URL, if a s
 
 It validates that each sitemaps.xml follows the XML schemas for sitemaps: http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd and for Sitemap index files: http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd
 
-Then it check each URL and returns its HTTP response code, Time, Meta Robots, Cache Control. 
+Then it checks each URL and returns its HTTP response code, Time, Meta Robots, Cache Control. 
 
-If any URL fails, Sitemap Validator fails as well.
+If any URL fails, Sitemap Validator fails as well (also it fails if sitemap isn't in correct format).
 
-This application is intended for running in CI/CD environment like Gitlab.
+This application is intended to run in CI/CD environment like Gitlab with Docker.
 
-# Docker
-```
-docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
-```
+# Docker usage:
+    docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
 
-# Gitlab
+# Gitlab integration:
 
-```
-check_sitemap:
-  stage: check_sitemap
-  image: jirkapinkas/sitemap_validator
-  script:
-    - /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
-```
+    check_sitemap:
+      stage: check_sitemap
+      image: jirkapinkas/sitemap_validator
+      script:
+        - /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
 
-# Parameters
-* -c to set the concurrency of workers.
-* -d to set maximum sitemaps to process
-* -o to output the results of each sitemap index into its own CSV file. 
-* -q to display only failed results.
+# Parameters:
+
+* `-c` to set the concurrency of workers.
+* `-d` to set maximum sitemaps to process
+* `-o` to output the results of each sitemap index into its own CSV file. 
+* `-q` to display only failed results.
 
