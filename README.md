@@ -14,13 +14,32 @@ This application is intended to run in CI/CD environment like Gitlab with Docker
 # Docker usage:
     docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
 
-# Gitlab integration:
+# Gitlab CI integration:
 
     check_sitemap:
       stage: check_sitemap
       image: jirkapinkas/sitemap_validator
       script:
         - /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
+
+# Github Actions integration:
+
+    name: Build
+
+    on: [push]
+
+    jobs:
+      build:
+
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+          - name: Check out code
+            uses: actions/checkout@v1
+
+          - name: Run Sitemap Validator using Docker
+            run: docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
+
 
 # Parameters:
 
