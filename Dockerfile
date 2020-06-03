@@ -16,5 +16,6 @@ COPY --from=builder /install /install
 ENV PYTHONPATH=/install
 COPY main.py /check_sitemap/main.py
 RUN chown -R sitemap_validator_user:sitemap_validator_user /check_sitemap
+RUN chown -R sitemap_validator_user:sitemap_validator_user /install
 USER sitemap_validator_user
 CMD ["sh"]
