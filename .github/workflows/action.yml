@@ -20,8 +20,8 @@ jobs:
       - name: login
         uses: docker/login-action@v1
         with:
-          username: ${{ DOCKER_HUB_USERNAME }}
-          password: ${{ DOCKER_HUB_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
       - name: push
         uses: docker/push-action@v1
 
