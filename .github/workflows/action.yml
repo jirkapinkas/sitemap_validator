@@ -27,3 +27,4 @@ jobs:
 
       - name: Test Sitemap Validator using Docker
         run: docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
+
