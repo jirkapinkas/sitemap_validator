@@ -11,22 +11,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
 
-      # - name: build
-      #   id: build
-      #   uses: docker/build-action@v1
-      #   with:
-      #     repository: jirkapinkas/sitemap_validator
-
-      - name: Build and push Docker image
+      - name: Build and push Docker image to default Docker repository
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           repository: jirkapinkas/sitemap_validator
           tag_with_ref: true
-      # - name: push
-      #   uses: docker/push-action@v1
 
-      - name: Test Sitemap Validator using Docker
+      - name: Test Sitemap Validator using latest Docker image created in last step
         run: docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
-
