@@ -11,5 +11,20 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v1
 
-      - name: Run Sitemap Validator using Docker
+      - name: build
+        uses: docker/build-action@v1
+        with:
+          repository: jirkapinkas/sitemap_validator
+          tags: latest
+      ‐ name: login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ DOCKER_HUB_USERNAME }}
+          password: ${{ DOCKER_HUB_PASSWORD }}
+      ‐ name: push
+        uses: docker/push-action@v1
+        # with:
+        #   tags: ${{ outputs.build.tags }}
+
+      - name: Test Sitemap Validator using Docker
         run: docker run jirkapinkas/sitemap_validator /check_sitemap/main.py -s "https://www.sitemaps.org/sitemap.xml" -c 5
